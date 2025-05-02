@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="mobile-message">
+        <div class="message-content">
+            <h2>Device Not Supported</h2>
+            <p>Only large screen is available. Switch to laptop or desktop.</p>
+        </div>
+    </div>
+
+    <div class="desktop-content">
+        <div class="container">
+            <div class="sidebar">
+                <!-- Sidebar content -->
+                <p style="font-size: xxx-large;
+    margin-bottom: 20px;">MICHAEL SY</p>
+                <p style="    margin-bottom: 20px;
+                text-align: justify;
+                line-height: 22px;
+                font-style: italic;">
+                    Software Developer with 7+ years of commercial experience, specializing in the Angular framework. My
+background includes strong experience in developing real-time data-driven solutions, particularly in the racing
+industry, affiliate marketing, and workforce management. Having been involved in a total of 24 commercial
+projects, including 14 focused on Angular. I am eager to utilize my skills and experience to tackle new challenges
+and contribute to the success of a client or organization.
+                </p>
+                <p style="    margin-bottom: 20px;
+    font-size: x-large;">
+                    dev.michael.ph@gmail.com
+                </p>
+                <p style="    margin-bottom: 10px;">
+                    LinkedIn: <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">
+                        https://linkedin.com/in/michael-s-3974b1154
+                    </a>
+                </p>
+                <p style="    margin-bottom: 30px;">
+                    Github: <a href="https://github.com/git-michael-hub" target="_blank">
+                        https://github.com/git-michael-hub
+                    </a>
+                </p>
+                <p style="    margin-bottom: 10px;">AI playground: 3D with Three.js</p>
+                <!-- <p></p> -->
+                <p style="    margin-bottom: 8px;">
+                    - <a href="https://3d-git-main-michaels-projects-477a8ebe.vercel.app/lava-shader" target="_blank">
+                        https://3d-git-main-michaels-projects-477a8ebe.vercel.app/lava-shader
+                    </a>
+                </p>
+                <p style="    margin-bottom: 8px;">
+                 - <a href="https://3d-git-main-michaels-projects-477a8ebe.vercel.app/" target="_blank">
+                        https://3d-git-main-michaels-projects-477a8ebe.vercel.app/
+                    </a>
+                </p>
+                <p style="    margin-bottom: 10px;">
+                     - <a href="https://3d-git-main-michaels-projects-477a8ebe.vercel.app/car-materials" target="_blank">
+                        https://3d-git-main-michaels-projects-477a8ebe.vercel.app/car-materials
+                    </a>
+                </p>
+            </div>
+            <div class="main-content">
+                <div>Projects are all in Angular. Click to view large image. Contact me to see more.</div>
+                <div style="display: flex; flex-direction: row;     justify-content: space-around;
+    width: 100%;">
+                    <div class="image-container">
+                        <img src="images/image1.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-container">
+                        <img src="images/image2.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-container">
+                        <img src="images/image3.jpg" alt="Image 1">
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: row;     justify-content: space-around;
+    width: 100%;">
+                    <div class="image-container">
+                        <img src="images/image4.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-container">
+                        <img src="images/image5.jpg" alt="Image 1">
+                    </div>
+                    <div class="image-container">
+                        <img src="images/image6.jpg" alt="Image 1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Popup -->
+    <div id="imagePopup" class="popup-container">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <img id="popupImage" src="" alt="Enlarged Image">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
