@@ -167,7 +167,8 @@ img.profile-image:hover {
 }
 
 .experience > .scroll-container,
-.project > .scroll-container {
+.project > .scroll-container,
+.skills > .scroll-container {
     width: 100%;
     height: 100vh;
     overflow-y: auto;
@@ -179,7 +180,8 @@ img.profile-image:hover {
 } */
 
 .experience  .sticky-heading,
-.project  .sticky-heading {
+.project  .sticky-heading,
+.skills .sticky-heading {
     position: sticky;
     left: 0;
     top: 0;
@@ -187,7 +189,8 @@ img.profile-image:hover {
   }
   
   .experience h1,
-  .project h1 {
+  .project h1,
+  .skills h1 {
     color: white;
     margin-left: 50px;
   }
@@ -345,7 +348,8 @@ img.profile-image:hover {
 
 
 
-  .project {
+  .project,
+  .skills {
     background: linear-gradient(
         90deg, 
         rgb(85, 117, 155) 0%, 
@@ -360,15 +364,65 @@ img.profile-image:hover {
     padding: 0px 40px;
   }
 
-  .project-item {
+  .skills-list {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .project-item,
+  .skills-item {
     background: white;
-    padding: 12px;
+    padding: 0 12px;
     border-radius: 12px;
     margin: 0 12px;
     width: 100%;
     text-align: center;
     box-shadow: 0 0px 100px rgb(0 0 0 / 18%);
     cursor: pointer;
+    height: 200px;
+  }
+
+  .skills-item  {
+    width: 400px !important;
+    height: 235px !important;
+  }
+
+  .skills-item .title {
+    margin-bottom: 2px;
+    margin-top: 10px;
+  }
+  
+  .skills-item  ul {
+    font-size: 13px;
+    text-align: left;
+    margin: 0;
+  }
+
+  .skills-summary {
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .skills-summary .legends {
+    text-align: left;
+  }
+
+  .skills-summary .legends ul {
+    padding-top: 12px;
+    padding-left: 16px;
+  }
+
+  .skills-item.skills-summary {
+    height: 552px !important;
+    margin-bottom: 10px;
+  }
+
+  .skills-item.skills-git {
+    height: 160px !important;
+  }
+
+  .project-item p {
+    margin: 10px 0;
   }
 
   .project-item .description {
@@ -377,6 +431,7 @@ img.profile-image:hover {
 
   .project-item .title {
     transition: transform 0.3s ease; /* Add a smooth transition */
+    margin-top: 12px;
 }
 
 .project-item .title:hover {
@@ -412,9 +467,9 @@ img.profile-image:hover {
 
 
 .project-content {
-    height: 64vh;
+    height: 60vh;
   display: flex; /* Not inline-flex */
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   gap: 1rem; /* spacing between images */
@@ -424,7 +479,27 @@ img.profile-image:hover {
   margin: 10px 52px;
   border-radius: 12px;
   scroll-behavior: smooth;
+
+    /* 👇 Always show scrollbar */
+    scrollbar-width: auto;    /* Firefox */
 }
+
+
+/* 👇 For WebKit (Chrome, Safari) */
+.project-content::-webkit-scrollbar {
+  height: 12px;
+}
+
+.project-content::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.project-content::-webkit-scrollbar-track {
+  background: #7993a9;
+}
+
+
 
 /* Optional: snap each image into view */
 .project-content > div {
@@ -440,7 +515,110 @@ img.profile-image:hover {
   height: auto;
 }
 
+.img-tech {
+    background: white;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    padding: 2px;
+    margin: 2px;
+}
+
+
+.img-tech:hover {
+    transform: scale(1.4); /* Scale the image by 20% (1 + 0.2) */
+}
+
+.img-aggrid {
+    width: 55px !important;
+    background: #727272 !important;
+}
+
+.img-auth0 {
+    background: #473f3f !important;
+    width: 40px !important;
+    padding: 0 6px !important;
+}
+
+.img-apollo {
+    background: #584c29 !important;
+}
+
+.img-leaflet {
+    width: 40px !important;
+    height: 30px !important;
+}
+
+.img-aws {
+    width: 22px !important;
+}
+
+.project-item-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.img-bootstrap {
+    width: 56px !important;
+    background: #727272 !important;
+    padding: 2px 4px !important;
+}
+
+.img-pusher {
+    width: 50px !important;
+    height: 14px !important;
+}
+
+.img-paypal {
+    height: 36px !important;
+    width: 36px !important;
+}
+
+.low-exp {
+    background: #dddada;
+    padding: 2px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #000000;
+}
+
+.mid-exp {
+    background: #ffdd79;
+    padding: 2px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #621717;
+}
+
+.high-exp {
+    background: #92ff96;
+    padding: 2px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #101d11;
+}
+
+.need-review {
+    background: #8fc5ef;
+    padding: 2px 4px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #282d32;
+}
+
+.skill-tech {
+    margin-right: 10px;
+}
+
+
+
     </style>
+
+
 
 
 
@@ -477,7 +655,7 @@ img.profile-image:hover {
               </div>
               <div class="right-box">
                   <h1>Good Day!</h1>
-                  <p>I am a Senior Software Developer with <strong>7+ years</strong> of commercial experience, specializing in the <strong>Angular</strong> framework.</p>
+                  <p>I’m Michael from Davao, Philippines. I am a Senior Software Developer with <strong>7+ years</strong> of commercial experience, specializing in the <strong>Angular</strong> framework.</p>
                   <p>I have hands-on experience in technical leadership, technical hiring, effective communication, project planning, and team development. I've been involved in 24 commercial projects, including 14 Angular-focused projects.</p>
                   <p>My background includes delivering real-time, data-driven solutions in industries such as racing, affiliate marketing, workforce management, and SaaS.</p>
                   <p>Strengths:</p>
@@ -713,24 +891,205 @@ img.profile-image:hover {
                 <h1 class="sticky-heading">Projects</h1>
                 <div class="project-list">
                     <div class="project-item project-1 active">
-                        <p class="title">Workforce Management</p>
-                        <p class="description">A web app for employee scheduling, time tracking, and management.</p>
+                        <div class="project-item-content">
+                            <div>
+                                <p class="title"><strong>Workforce Management</strong></p>
+                            <p class="description">A web app for employee scheduling, time tracking, and management.</p>
+                            </div>
+                            <p>
+                                <span>
+                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/graphql.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                </span>
+                            </p>
+                        </div>
+                        
                     </div>
                     <div class="project-item project-2">
-                        <p class="title">Workforce Management</p>
+                        <div class="project-item-content">
+                            <div>
+                                <p class="title"><strong>Workforce Management</strong></p>
                         <p class="description">A web-mobile app for employee scheduling, time tracking, and management.</p>
+                            </div>
+                            <p>
+                                <span>
+                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/graphql.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                </span>
+                            </p>
+                        </div>
+                        
+                  
                     </div>
                     <div class="project-item project-3">
-                        <p class="title">Affiliate Management</p>
-                        <p class="description">A web app for Internal Marketing.</p>
+                       <div class="project-item-content">
+                        <div>
+                            <p class="title"><strong>Affiliate Management</strong></p>
+                            <p class="description">A web app for Internal Marketing.</p>
+                           </div>
+                      
+                            <p>
+                                <span>
+                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/highcharts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-aggrid" src="images/tech/ag-grid.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/docker.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
+                                </span>
+                            </p>
+                       </div>
                     </div>
                     <div class="project-item project-4">
-                        <p class="title">Complex Horse Betting</p>
-                        <p class="description">Live horse betting platform.</p>
+                        <div class="project-item-content">
+                            <div>
+                                <p class="title"><strong>Complex Horse Betting</strong></p>
+                                <p class="description">Live real-time horse betting platform.</p>
+                            </div>
+                            <p>
+                                <span>
+                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-bootstrap" src="images/tech/ngx-bootstrap.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-pusher" src="images/tech/pusher.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                </span>
+                            </p>
+                        </div>
+                        
+                      
                     </div>
                     <div class="project-item project-5">
-                        <p class="title">Virtual Horse Show</p>
+                        <div class="project-item-content">
+                            <div>
+                                <p class="title"><strong>Virtual Horse Show</strong></p>
                         <p class="description">A web application for virtual horse shows.</p>
+                            </div>
+
+                            <p>
+                                <span>
+                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
+                                </span>
+                                <span>
+                                    <img class="img-tech img-paypal" src="images/tech/paypal.png" alt="Email" />
+                                </span>
+                            </p>
+                        </div>
+                      
+                        
+                        
                     </div>
                 </div>
                 <div class="project-content project-1-content" >
@@ -920,8 +1279,386 @@ img.profile-image:hover {
             </div>
           </section>
       
-          <section class="first-level-section">
-            <h1>slide 4</h1>
+          <section class="first-level-section skills">
+            <div class="scroll-container">
+                <h1 class="sticky-heading">Skills</h1>
+
+                <div style="display: flex; flex-direction: row; height: 90vh; margin: 0 40px;">
+                    <div class="" style="display: flex; flex-direction: column;">
+                        <div class="skills-item skills-summary skill-1 active" style="height: 100%;">
+                            <div class="skills-item-content">
+                                <div>
+                                    <!-- <p class="title"><strong>Languages</strong></p> -->
+                                    <div class="description">
+                                        <p>Graduated in Computer Science, with coursework in multiple programming languages, OOP, data structures and algorithms, AI, etc.</p>
+                                        <p>Started my career as a full-stack developer, then later specialized in Angular due to the salary gap with specific expertise.</p>
+                                        <p>I explore various programming languages, frameworks, and tools. However, over time, unused skills fade.</p>
+                                        <p>Even though I have more experience in Angular, I don't use it for every problem. I choose the best-fit technology based on product requirements and what needs to be solved. I can adapt to different languages and frameworks as needed.</p>
+                                        <p>I follow a balanced approach that includes DRY, KISS, YAGNI, SOLID principles, TDD/BDD, modular design (Separation of Concerns), and UI development with stateless/stateful components.</p>
+                                      </div>
+
+                                    <div class="legends">
+                                        <span>Legends:</span>
+                                        <ul>
+                                            <li>
+                                                <span class="low-exp">low-exp</span> experience with small tasks or less than 1 year of usage.
+                                            </li>
+                                            <li>
+                                                <span class="mid-exp">mid-exp</span> experience with medium tasks or less than 3 years of usage.
+                                            </li>
+                                            <li>
+                                                <span class="high-exp">high-exp</span> experience with larger tasks, or over 3 years of usage, and currently in active use.
+                                            </li>
+                                            <li>
+                                                <span class="need-review">need-review</span> experience with medium to large tasks or over 3 years of usage, but not currently using it and may need a refresher.
+                                            </li>
+                                            <!-- <li>
+                                                estimate years
+                                            </li> -->
+                                            <!-- <li>
+                                                number of projects
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skills-item skill-1 skills-git active">
+                            <div class="skills-item-content">
+                                <div>
+                                    <p class="title"><strong>Version Control & Agile</strong></p>
+                                  
+                                        <ul>
+                                            <li>
+                                                <span class="skill-tech">Git</span> 
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Bitbucket</span>
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Trello</span>
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech"> Jira </span>
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Azure DevOps</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="skills-list" style="display: flex; flex-direction: row;">
+                        <div style="display: grid;">
+                            <div class="skills-item skill-1 active">
+                                <div class="skills-item-content">
+                                    <div>
+                                        <p class="title"><strong>Languages</strong></p>
+                                       
+                                            <ul>
+                                                <li>
+                                                    <span class="skill-tech">TypeScript</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">JavaScript</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">HTML</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">CSS</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Sass Style</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Python</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                    <span class="need-review">need-review</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">PHP</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="need-review">need-review</span>
+                                                </li>
+                                               
+                                                <li>
+                                                    <span class="skill-tech">Java</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="need-review">need-review</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">C/C++</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="need-review">need-review</span>
+                                                </li>
+                                            </ul>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+        
+                           
+                            <div class="skills-item skill-1 active">
+                                <div class="skills-item-content">
+                                    <div>
+                                        <p class="title"><strong>Data and UI Libraries</strong></p>
+                         
+                                            <ul>
+                                                <li>
+                                                    <span class="skill-tech">Rxjs</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">NgRx (Redux)</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+    
+                                                <li>
+                                                    <span class="skill-tech">PusherJS</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Apollo GraphQL</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="need-review">need-review</span>
+                                                </li>
+    
+                                                <li>
+                                                    <span class="skill-tech">Angular Material</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Bootstrap/ngx-bootstrap</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Tailwind CSS</span>
+                                                    <span class="high-exp">high-exp</span>
+                                                </li>
+                                               
+                                                <li>
+                                                    <span class="skill-tech"> High Charts </span>
+                                                    <span class="low-exp">low-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech"> Ag-Grid </span>
+                                                    <span class="low-exp">low-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">Leaflet</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                </li>
+                                            </ul>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="skills-item skill-1 active">
+                                <div class="skills-item-content">
+                                    <div>
+                                        <p class="title"><strong>Database</strong></p>
+                                    
+                                            <ul>
+                                                <li>
+                                                    <span class="skill-tech">SQLite</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">PostgreSQL</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">MySQL</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">SQL Server</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                </li>
+                                                <li>
+                                                    <span class="skill-tech">NoSQL</span>
+                                                    <span class="mid-exp">mid-exp</span>
+                                                </li>
+                                            </ul>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+        
+
+
+                        </div>
+
+
+
+
+    
+                       <div style="display: grid;">
+                        <div class="skills-item skill-1 active">
+                            <div class="skills-item-content">
+                                <div>
+                                    <p class="title"><strong>Framework & Build Libraries</strong></p>
+                           
+                                        <ul>
+                                          
+
+                                            <li>
+                                                <span class="skill-tech">Angular</span> 
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Ionic (Angular)</span>
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Nx/Nrwl</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">ReactJS</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Django</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">WordPress</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Flask</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech"> NodeJS </span>
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">jQuery</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Laravel</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+
+                                     
+
+                                         
+                                        </ul>
+                             
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="skills-item skill-1 active">
+                            <div class="skills-item-content">
+                                <div>
+                                    <p class="title"><strong>Cloud & Infrastructure</strong></p>
+                      
+                                        <ul>
+                                            <li>
+                                                <span class="skill-tech">Docker</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Microsoft Azure</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                          
+                                            <li>
+                                                <span class="skill-tech">AWS</span>
+                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Heroku</span> 
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Firebase</span> 
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="need-review">need-review</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Auth0</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">PWA</span>
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                        </ul>
+                             
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="skills-item skill-1 active">
+                            <div class="skills-item-content">
+                                <div>
+                                    <p class="title"><strong>Tools and AI</strong></p>
+                                
+                                        <ul>
+                                            <li>
+                                                <span class="skill-tech">Postman</span> 
+                                                <span class="high-exp">high-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Cypress</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Jest</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">ChatGPT</span> 
+                                                <span class="mid-exp">mid-exp</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech"> Cursor AI</span>
+                                                <span class="low-exp">low-exp</span>
+                                            </li>
+                                        </ul>
+                               
+                                </div>
+                            </div>
+                        </div>
+    
+                       </div>
+
+
+                    </div>
+                </div>
+                
+            </div>
           </section>
       
           <section class="first-level-section">
