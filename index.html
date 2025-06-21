@@ -13,10 +13,42 @@
 
 
 
-    <style>
+
+
+<style>
+    
+
+img, p, a, span, ul, strong {
+  opacity: 1;
+  /* transform: scale(1); */
+  transition: opacity 0.3s ease-in;
+}
+
+img.hidden,
+p.hidden,
+a.hidden,
+span.hidden
+ul.hidden
+strong.hidden
+{
+  opacity: 0;
+  /* transform: scale(0.9); */
+}
+
+
+body.ready .first-level-section {
+  transition: opacity 0.3s ease-in, transform 0.2s ease-in;
+}
+
 
 html, body, .first-level-section {
   block-size: 100%;
+  background: linear-gradient(
+        90deg, 
+        rgb(85, 117, 155) 0%, 
+        rgb(125, 152, 175) 50%, 
+        rgb(85, 117, 155) 100%
+    );
 }
 
 body {
@@ -38,14 +70,42 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+
+    /* Hidden by default */
+    opacity: 0.2;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease-out, transform 0.2s ease-out;
+
+    
+    will-change: opacity, transform;
 }
+
+  /* When visible - fade in and scale up */
+  .first-level-section.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+
+.first-level-section:first-of-type {
+    margin-top: 50px;
+    position: sticky;
+    top: 0px;
+}
+
+
+.first-level-section.experience {
+  /* scroll-snap-align: none;
+  scroll-snap-stop: normal; */
+}
+
 
 p, li {
     line-height: 1.5;
 }
 
 a img {
-    transition: transform 0.3s ease; /* Add a smooth transition */
+    /* transition: transform 0.3s ease;  */
 }
 
 a img:hover {
@@ -179,14 +239,14 @@ img.profile-image:hover {
     height: 1200px;
 } */
 
-.experience  .sticky-heading,
+/* .experience  .sticky-heading,
 .project  .sticky-heading,
 .skills .sticky-heading {
     position: sticky;
     left: 0;
     top: 0;
     z-index: 10;
-  }
+  } */
   
   .experience h1,
   .project h1,
@@ -382,6 +442,39 @@ img.profile-image:hover {
     height: 200px;
   }
 
+  .outro-item {
+    padding: 0 32px;
+    border-radius: 12px;
+    margin: 0 12px 30px 12px;
+    text-align: center;
+    box-shadow: 0 0px 100px rgb(0 0 0 / 18%);
+    width: 101%;
+    height: 100%;
+    background: #ffffff;
+    color: rgb(54, 62, 73);
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .outro-item .title {
+    font-size: 16px;
+  }
+
+  .outro-item img {
+    margin-right: 12px;
+  }
+
+  .outro-end {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 60px;
+    display: flex;
+    flex-direction: column;
+
+    color: #373e49;
+  }
+
   .skills-item  {
     width: 400px !important;
     height: 235px !important;
@@ -390,6 +483,8 @@ img.profile-image:hover {
   .skills-item .title {
     margin-bottom: 2px;
     margin-top: 10px;
+    text-align: left;
+    padding-left: 16px;
   }
   
   .skills-item  ul {
@@ -415,10 +510,12 @@ img.profile-image:hover {
   .skills-item.skills-summary {
     height: 552px !important;
     margin-bottom: 10px;
+    padding: 0 22px;
   }
 
   .skills-item.skills-git {
     height: 160px !important;
+    padding-left: 32px;
   }
 
   .project-item p {
@@ -467,6 +564,7 @@ img.profile-image:hover {
 
 
 .project-content {
+    /* display: none !important; */
     height: 60vh;
   display: flex; /* Not inline-flex */
   overflow-x: scroll;
@@ -524,6 +622,8 @@ img.profile-image:hover {
     border-radius: 8px;
     padding: 2px;
     margin: 2px;
+
+    will-change: opacity, transform;
 }
 
 
@@ -560,6 +660,7 @@ img.profile-image:hover {
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
+    /* will-change: transform; */
 }
 
 .img-bootstrap {
@@ -610,6 +711,34 @@ img.profile-image:hover {
     color: #282d32;
 }
 
+.exp-year {
+    background: #df7958;
+    padding: 0px 3px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+    height: 14px;
+}
+
+.number-projects {
+    background: #ffffff;
+    padding: 0px 3px;
+    border-radius: 16px;
+    font-size: 11px;
+    color: #282d32;
+    border-style: solid;
+    border-width: 1px;
+    width: 15px;
+    display: inline-block;
+    text-align: center;
+    height: 14px;
+}
+
 .skill-tech {
     margin-right: 10px;
 }
@@ -631,24 +760,24 @@ img.profile-image:hover {
             <div class="container">
               <div class="left-box">
                   <p>
-                      <img src="images/me.png" alt="Profile Picture" class="profile-image" style="width: 160px; height: 120px; vertical-align: middle;">
+                      <img loading="lazy" decoding="async"  src="images/me.png" alt="Profile Picture" class="profile-image" style="width: 160px; height: 120px; vertical-align: middle;">
                   </p>
                   <strong>Michael Sy</strong>
                   <p>Software Developer | Angular Framework</p>
                   <p>
                       <span>
-                          <a href="mailto:dev.michael.ph@gmail.com">
-                              <img src="images/social_media/gmail.png" alt="Email" style="width: 24px; height: 30px; vertical-align: middle;">
+                          <a href="https://mail.google.com/mail/?view=cm&to=dev.michael.ph@gmail.com" target="_blank">
+                              <img loading="lazy" decoding="async" src="images/social_media/gmail.png" alt="Email" style="width: 24px; height: 30px; vertical-align: middle;">
                           </a>
                       </span>
                       <span>
                           <a href="https://github.com/git-michael-hub" target="_blank">
-                              <img src="images/social_media/github-sign.png" alt="Github Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                              <img loading="lazy" decoding="async" src="images/social_media/github-sign.png" alt="Github Profile" style="width: 24px; height: 24px; vertical-align: middle;">
                           </a>
                       </span>
                       <span>
                           <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">
-                              <img src="images/social_media/linkedin.png" alt="LinkedIn Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                              <img loading="lazy" decoding="async" src="images/social_media/linkedin.png" alt="LinkedIn Profile" style="width: 24px; height: 24px; vertical-align: middle;">
                           </a>
                       </span>
                   </p>
@@ -673,9 +802,6 @@ img.profile-image:hover {
           <section class="first-level-section experience">
               <div class="scroll-container">
                     <h1 class="">Experience</h1>
-                  <!-- <section class="experience-1">Section 1</section>
-                  <section class="experience-2">Section 2</section>
-                  <section class="experience-3">Section 3</section> -->
 
 
                   <div class="timeline">
@@ -687,7 +813,6 @@ img.profile-image:hover {
                         </p>
                         <p class="header">
                             <span>Project Technical Lead (Angular)</span>
-                            <!-- <span>August 2023 – present</span> -->
                         </p>
                       
                         <p>
@@ -707,7 +832,6 @@ img.profile-image:hover {
 
                         <p class="header">
                             <span>Frontend Devloper - Angular Specialist (Freelance)</span>
-                            <!-- <span>September 2019 – August 2023</span> -->
                         </p>
                       
                         <p>
@@ -732,7 +856,6 @@ img.profile-image:hover {
                             </p>
                             <p class="header">
                                 <span>Django Developer - US client</span>
-                                <!-- <span>April 2019 – June 2019</span> -->
                             </p>
                           
                             <p>
@@ -745,7 +868,6 @@ img.profile-image:hover {
 
                             <p class="header">
                                 <span>Wordpress Developer - UK client</span>
-                                <!-- <span>February 2019 – April 2019</span> -->
                             </p>
                           
                             <p>
@@ -757,7 +879,6 @@ img.profile-image:hover {
 
                             <p class="header">
                                 <span>Angular Developer - UK client</span>
-                                <!-- <span>September 2018 – April 2019</span> -->
                             </p>
                           
                             <p>
@@ -776,7 +897,6 @@ img.profile-image:hover {
 
                             <p class="header">
                                 <span>Python Developer - US client</span>
-                                <!-- <span>April 2018 – November 2018</span> -->
                             </p>
                           
                             <p>
@@ -799,7 +919,6 @@ img.profile-image:hover {
                         <div class="content">
                             <p class="header header-title">
                                 <strong>Junior Software Developer</strong>
-                                <!-- <strong>April 2018 – June 2019</strong> -->
                             </p>
                             <p class="header">
                                 <span>Swiftkind – PH</span>
@@ -832,9 +951,6 @@ img.profile-image:hover {
                     </div>
 
                     <div class="container left">
-                        <!-- <p class="header">
-                            <strong>Freelance Project Based</strong>
-                        </p> -->
 
                         <div class="content">
                             <p class="header header-title">
@@ -886,7 +1002,7 @@ img.profile-image:hover {
                 </div>
           </section>
       
-          <section class="first-level-section project">
+          <!-- <section class="first-level-section project">
             <div class="scroll-container">
                 <h1 class="sticky-heading">Projects</h1>
                 <div class="project-list">
@@ -898,40 +1014,40 @@ img.profile-image:hover {
                             </div>
                             <p>
                                 <span>
-                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/angular.gif" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/material.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/graphql.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/graphql.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/rxjs.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/nx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/pwa.png" alt="Email" />
                                 </span>
                             </p>
                         </div>
@@ -945,40 +1061,40 @@ img.profile-image:hover {
                             </div>
                             <p>
                                 <span>
-                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/angular.gif" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/material.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-apollo" src="images/tech/apollo.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/graphql.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/graphql.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-leaflet" src="images/tech/leaflet.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/rxjs.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/nx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-aws" src="images/tech/aws.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/pwa.png" alt="Email" />
                                 </span>
                             </p>
                         </div>
@@ -994,37 +1110,37 @@ img.profile-image:hover {
                       
                             <p>
                                 <span>
-                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/angular.gif" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/material.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/rxjs.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ngrx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/nx.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/nx.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/tailwindcss.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/highcharts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/highcharts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-aggrid" src="images/tech/ag-grid.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-aggrid" src="images/tech/ag-grid.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/docker.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/docker.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
                                 </span>
                             </p>
                        </div>
@@ -1037,22 +1153,22 @@ img.profile-image:hover {
                             </div>
                             <p>
                                 <span>
-                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/angular.gif" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/pwa.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/pwa.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-bootstrap" src="images/tech/ngx-bootstrap.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-bootstrap" src="images/tech/ngx-bootstrap.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-pusher" src="images/tech/pusher.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-pusher" src="images/tech/pusher.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/rxjs.png" alt="Email" />
                                 </span>
                             </p>
                         </div>
@@ -1068,22 +1184,22 @@ img.profile-image:hover {
 
                             <p>
                                 <span>
-                                    <img class="img-tech" src="images/tech/angular.gif" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/angular.gif" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/rxjs.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/rxjs.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/material.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/material.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech" src="images/tech/ts.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech" src="images/tech/ts.png" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-auth0" src="images/tech/auth0.svg" alt="Email" />
                                 </span>
                                 <span>
-                                    <img class="img-tech img-paypal" src="images/tech/paypal.png" alt="Email" />
+                                    <img loading="lazy" decoding="async" class="img-tech img-paypal" src="images/tech/paypal.png" alt="Email" />
                                 </span>
                             </p>
                         </div>
@@ -1095,189 +1211,186 @@ img.profile-image:hover {
                 <div class="project-content project-1-content" >
                   
                    <div>
-                    <img src="images/projects/project1/example_em_2.png" class="project-image project-1-image" />
+                    <img loading="lazy" decoding="async" src="images/projects/project1/example_em_2.png" class="project-image project-1-image" />
                    </div>
                    <div>
-                    <img src="images/projects/project1/example_em_1.png" class="project-image project-1-image"  />
+                    <img loading="lazy" decoding="async" src="images/projects/project1/example_em_1.png" class="project-image project-1-image"  />
                 </div>
              
                    <div>
-                    <img src="images/projects/project1/example_em_3.png" class="project-image project-1-image"  />
+                    <img loading="lazy" decoding="async" src="images/projects/project1/example_em_3.png" class="project-image project-1-image"  />
                    </div>
                     <div>
-                        <img src="images/projects/project1/example_em_4.png" class="project-image project-1-image"  />
+                        <img loading="lazy" decoding="async" src="images/projects/project1/example_em_4.png" class="project-image project-1-image"  />
                     </div>
                    
                     <div>
-                        <img src="images/projects/project1/example_em_5.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project1/example_em_5.png" class="project-image project-1-image" />
                     </div>
                    
                     <div>
-                        <img src="images/projects/project1/example_em_6.png" class="project-image project-1-image"  />
+                        <img loading="lazy" decoding="async" src="images/projects/project1/example_em_6.png" class="project-image project-1-image"  />
                     </div>
                   
                     <div>
-                        <img src="images/projects/project1/example_em_7.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project1/example_em_7.png" class="project-image project-1-image" />
                     </div>
                 </div>
                 <div class="project-content project-2-content" style="display: none;">
                     <div>
-                        <img src="images/projects/project2/example_em_m_1.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_1.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project2/example_em_m_2.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_2.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project2/example_em_m_3.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_3.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_4.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_4.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_5.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_5.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_6.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_6.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_7.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_7.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_8.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_8.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_9.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_9.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_10.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_10.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_11.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_11.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_12.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_12.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_13.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_13.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_14.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_14.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_15.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_15.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_16.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_16.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project2/example_em_m_17.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_17.png" class="project-image project-1-image" />
                        </div>
                 </div>
                 <div class="project-content project-3-content" style="display: none;">
                     <div>
-                        <img src="images/projects/project3/example_aff_1.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_1.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_2.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_2.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_3.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_3.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_4.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_4.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_5.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_5.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_6.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_6.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_7.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_7.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project3/example_aff_8.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_8.png" class="project-image project-1-image" />
                        </div>
 
                 </div>
                 <div class="project-content project-4-content" style="display: none;">
                     <div>
-                        <img src="images/projects/project4/example_plus_1.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_1.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_2.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_2.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_3.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_3.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_4.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_4.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_5.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_5.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_6.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_6.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project4/example_plus_7.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_7.png" class="project-image project-1-image" />
                        </div>
                        <div>
-                        <img src="images/projects/project4/example_plus_8.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_8.png" class="project-image project-1-image" />
                        </div>
                 </div>
                 <div class="project-content project-5-content" style="display: none;">
                     <div>
-                        <img src="images/projects/project5/example_vhs_2.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_2.png" class="project-image project-1-image" />
                        </div>
                        
                     <div>
-                        <img src="images/projects/project5/example_vhs_1.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_1.png" class="project-image project-1-image" />
                        </div>
 
               
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_3.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_3.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_4.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_4.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_h_1.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_1.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_h_2.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_2.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_h_3.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_3.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_h_4.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_4.png" class="project-image project-1-image" />
                        </div>
 
                        <div>
-                        <img src="images/projects/project5/example_vhs_h_5.png" class="project-image project-1-image" />
+                        <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_5.png" class="project-image project-1-image" />
                        </div>
                 </div>
-              <!-- <section class="project-1">Section 1</section> -->
-              <!-- <section class="project-2">Section 2</section>
-              <section class="project-3">Section 3</section> -->
             </div>
-          </section>
+          </section> -->
       
           <section class="first-level-section skills">
             <div class="scroll-container">
@@ -1288,7 +1401,6 @@ img.profile-image:hover {
                         <div class="skills-item skills-summary skill-1 active" style="height: 100%;">
                             <div class="skills-item-content">
                                 <div>
-                                    <!-- <p class="title"><strong>Languages</strong></p> -->
                                     <div class="description">
                                         <p>Graduated in Computer Science, with coursework in multiple programming languages, OOP, data structures and algorithms, AI, etc.</p>
                                         <p>Started my career as a full-stack developer, then later specialized in Angular due to the salary gap with specific expertise.</p>
@@ -1312,12 +1424,12 @@ img.profile-image:hover {
                                             <li>
                                                 <span class="need-review">need-review</span> experience with medium to large tasks or over 3 years of usage, but not currently using it and may need a refresher.
                                             </li>
-                                            <!-- <li>
-                                                estimate years
-                                            </li> -->
-                                            <!-- <li>
-                                                number of projects
-                                            </li> -->
+                                            <li>
+                                                <span class="exp-year">#+</span> years of experience
+                                            </li>
+                                            <li>
+                                                <span class="number-projects">#</span> number of projects implemented for the client
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1333,22 +1445,38 @@ img.profile-image:hover {
                                             <li>
                                                 <span class="skill-tech">Git</span> 
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">7+</span>
+                                                <span class="number-projects">20</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Bitbucket</span>
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">5+</span>
+                                                <span class="number-projects">15</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Trello</span>
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">3+</span>
+                                                <span class="number-projects">5</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Github Projects</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech"> Jira </span>
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">6+</span>
+                                                <span class="number-projects">8</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Azure DevOps</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year"> < 1</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                         </ul>
                                 </div>
@@ -1368,43 +1496,59 @@ img.profile-image:hover {
                                                 <li>
                                                     <span class="skill-tech">TypeScript</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">6+</span>
+                                                    <span class="number-projects">17</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">JavaScript</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">7+</span>
+                                                    <span class="number-projects">20</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">HTML</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">7+</span>
+                                                    <span class="number-projects">20</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">CSS</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">7+</span>
+                                                    <span class="number-projects">20</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Sass Style</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">5+</span>
+                                                    <span class="number-projects">4</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Python</span>
                                                     <span class="high-exp">high-exp</span>
                                                     <span class="need-review">need-review</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">PHP</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
                                                     <span class="need-review">need-review</span>
+                                                    <span class="exp-year">< 1</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                                
                                                 <li>
                                                     <span class="skill-tech">Java</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
                                                     <span class="need-review">need-review</span>
+                                                    <span class="exp-year">1+</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">C/C++</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
                                                     <span class="need-review">need-review</span>
+                                                    <span class="exp-year">1+</span>
                                                 </li>
                                             </ul>
                                         
@@ -1422,46 +1566,66 @@ img.profile-image:hover {
                                                 <li>
                                                     <span class="skill-tech">Rxjs</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">6+</span>
+                                                    <span class="number-projects">10</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">NgRx (Redux)</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">4+</span>
+                                                    <span class="number-projects">4</span>
                                                 </li>
     
                                                 <li>
                                                     <span class="skill-tech">PusherJS</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">5+</span>
+                                                    <span class="number-projects">3</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Apollo GraphQL</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
                                                     <span class="need-review">need-review</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">1</span>
                                                 </li>
     
                                                 <li>
                                                     <span class="skill-tech">Angular Material</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">4+</span>
+                                                    <span class="number-projects">5</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Bootstrap/ngx-bootstrap</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">4+</span>
+                                                    <span class="number-projects">7</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Tailwind CSS</span>
                                                     <span class="high-exp">high-exp</span>
+                                                    <span class="exp-year">4+</span>
+                                                    <span class="number-projects">4</span>
                                                 </li>
                                                
                                                 <li>
                                                     <span class="skill-tech"> High Charts </span>
                                                     <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">< 1</span>
+                                                    <span class="number-projects">1</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech"> Ag-Grid </span>
                                                     <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">< 1</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">Leaflet</span>
                                                     <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">< 1</span>
+                                                    <span class="number-projects">3</span>
                                                 </li>
                                             </ul>
                                    
@@ -1478,23 +1642,33 @@ img.profile-image:hover {
                                             <ul>
                                                 <li>
                                                     <span class="skill-tech">SQLite</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">1</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">PostgreSQL</span>
                                                     <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">1</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">MySQL</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">SQL Server</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                                 <li>
                                                     <span class="skill-tech">NoSQL</span>
-                                                    <span class="mid-exp">mid-exp</span>
+                                                    <span class="low-exp">low-exp</span>
+                                                    <span class="exp-year">1+</span>
+                                                    <span class="number-projects">2</span>
                                                 </li>
                                             </ul>
                                    
@@ -1522,49 +1696,69 @@ img.profile-image:hover {
                                             <li>
                                                 <span class="skill-tech">Angular</span> 
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">6+</span>
+                                                <span class="number-projects">14</span>
                                             </li>
                                             <li>
-                                                <span class="skill-tech">Ionic (Angular)</span>
+                                                <span class="skill-tech">Ionic (Angular - Android - IOS)</span>
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">3+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Nx/Nrwl</span> 
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">4+</span>
+                                                <span class="number-projects">4</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">ReactJS</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">2+</span>
+                                                <span class="number-projects">4</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Django</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">WordPress</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">2</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Flask</span> 
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">< 1</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech"> NodeJS </span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">< 1</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">jQuery</span>
                                                 <span class="high-exp">high-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">3+</span>
+                                                <span class="number-projects">2</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Laravel</span>
                                                 <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">< 1</span>
+                                                <span class="number-projects">1</span>
                                             </li>
 
                                      
@@ -1584,35 +1778,66 @@ img.profile-image:hover {
                                         <ul>
                                             <li>
                                                 <span class="skill-tech">Docker</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">4+</span>
+                                                <span class="number-projects">4</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Microsoft Azure</span>
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">4+</span>
+                                                <span class="number-projects">4</span>
                                             </li>
                                           
                                             <li>
                                                 <span class="skill-tech">AWS</span>
                                                 <span class="mid-exp">mid-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">2+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Heroku</span> 
                                                 <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">< 1</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Firebase</span> 
                                                 <span class="low-exp">low-exp</span>
                                                 <span class="need-review">need-review</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">1</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Auth0</span> 
                                                 <span class="mid-exp">mid-exp</span>
+                                                <span class="exp-year">2+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">PWA</span>
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">3+</span>
+                                                <span class="number-projects">2</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Bitbucket Pipeline</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">1</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Github Actions</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">1+</span>
+                                                <span class="number-projects">2</span>
+                                            </li>
+                                            <li>
+                                                <span class="skill-tech">Vercel</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">1+</span>
                                             </li>
                                         </ul>
                              
@@ -1629,22 +1854,29 @@ img.profile-image:hover {
                                             <li>
                                                 <span class="skill-tech">Postman</span> 
                                                 <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">20+</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Cypress</span> 
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">4+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">Jest</span> 
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="high-exp">high-exp</span>
+                                                <span class="exp-year">4+</span>
+                                                <span class="number-projects">3</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech">ChatGPT</span> 
-                                                <span class="mid-exp">mid-exp</span>
+                                                <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">1+</span>
                                             </li>
                                             <li>
                                                 <span class="skill-tech"> Cursor AI</span>
                                                 <span class="low-exp">low-exp</span>
+                                                <span class="exp-year">< 1</span>
                                             </li>
                                         </ul>
                                
@@ -1661,8 +1893,81 @@ img.profile-image:hover {
             </div>
           </section>
       
-          <section class="first-level-section">
-            <h1>slide 5</h1>
+          <section class="first-level-section outro">
+            <div class="scroll-container">
+                <!-- <h1 class="sticky-heading">Skills</h1> -->
+
+                <div style="display: flex; flex-direction: row; height: 90vh; margin: 0 40px;">
+                    <div class="" style="display: flex; flex-direction: column; align-items: center; width: 60vw;">
+                        <div class="outro-item  outro-1 active" style="height: 100%;">
+                            <div class="outro-item-content">
+                                <div>
+                                    <p class="title"><strong>Links</strong></p>
+                                    <div class="description">
+                                        <p>Angular Notes: <a href="https://micheatshit.web.app/angular" target="_blank">https://micheatshit.web.app/angular</a></p>
+                                        <p>Angular Playground App: <a href="https://workie-work.vercel.app/" target="_blank">https://workie-work.vercel.app/</a></p>
+                                        <p>
+                                            3D Playground with ThreeJS and Cursor AI:
+                                            <ul>
+                                                <li>
+                                                    <a href="https://3d-delta-three.vercel.app/" target="_blank">https://3d-delta-three.vercel.app/</a>
+                                                </li>
+                                                <li>
+                                                    <a href="https://3d-delta-three.vercel.app/lava-shader" target="_blank">https://3d-delta-three.vercel.app/lava-shader</a>
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            JS games with Cursor AI: <a href="https://games-seven-brown.vercel.app/" target="_blank">https://games-seven-brown.vercel.app/</a>
+                                        </p>
+
+                                        <br>
+                                        <br>
+
+                                 
+
+                                        <p>
+                                            <a href="https://mail.google.com/mail/?view=cm&to=dev.michael.ph@gmail.com" target="_blank" style="text-decoration: none;">
+                                                <img loading="lazy" decoding="async" src="images/social_media/gmail.png" alt="Email" style="width: 24px; height: 30px; vertical-align: middle;" />
+                                            </a>
+                                            <span id="email-text">dev.michael.ph@gmail.com</span>
+                                            <button id="copy-btn" onclick="copyEmail()" title="Copy to clipboard" style="cursor: pointer;">
+                                                Copy
+                                              </button>
+                                        </p>
+                                        <p>
+                                            <a href="https://github.com/git-michael-hub" target="_blank">
+                                                <img loading="lazy" decoding="async" src="images/social_media/github-sign.png" alt="Github Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                                          
+                                            </a>
+                                            <a href="https://github.com/git-michael-hub" target="_blank">https://github.com/git-michael-hub</a>
+                                        </p>
+                                        <p>
+                                            <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">
+                                                <img loading="lazy" decoding="async" src="images/social_media/linkedin.png" alt="LinkedIn Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                                            </a>
+                                            <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">https://linkedin.com/in/michael-s-3974b1154</a>
+                                        </p>
+
+                                      </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="outro-item outro-1 active">
+                            <div class="outro-item-content">
+                                <div class="outro-end">
+                                    <h1>Thank you for checking out my portfolio.</h1>
+                                    <br />
+                                    <h3>Wishing you a wonderful day!</h3>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
           </section>
           
           
@@ -1689,6 +1994,14 @@ img.profile-image:hover {
 
 
        <script>
+
+
+
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", function () {
           const projectItems = document.querySelectorAll('.project-item');
           const projectContents = document.querySelectorAll('.project-content');
@@ -1719,9 +2032,174 @@ img.profile-image:hover {
             });
           });
 
+
+
+
+          setTimeout(() => {
+    document.body.classList.add('ready');
+
+    const sections = document.querySelectorAll('.first-level-section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    sections.forEach(section => observer.observe(section));
+  }, 50); // or requestAnimationFrame(() => ...)
+
+
+
+
+
+
+
+  function copyEmail() {
+            const email = document.getElementById("email-text").textContent;
+            const button = document.getElementById("copy-btn");
+
+            navigator.clipboard.writeText(email).then(() => {
+                // Change to "Copied"
+                button.textContent = "Copied";
+                button.disabled = true;
+
+                // Revert after 3 seconds
+                setTimeout(() => {
+                    button.textContent = "Copy";
+                    button.disabled = false;
+                }, 3000);
+            });
+        }
                    
        
         });
+
+
+
+
+
+
+
+
+
+        let scrollTimeout_1;
+        let scrollTimeout_2;
+        let scrollTimeout_3;
+        let scrollTimeout_4;
+        let scrollTimeout_5;
+        let scrollTimeout_6;
+
+function hideImagesDuringScroll() {
+  const techImgs = document.querySelectorAll('img');
+
+  // Hide all during scroll
+  techImgs.forEach(img => img.classList.add('hidden'));
+
+  // Clear any previous timeout
+  clearTimeout(scrollTimeout_1);
+
+  // Show after scroll stops (150ms delay)
+  scrollTimeout_1 = setTimeout(() => {
+    techImgs.forEach(img => img.classList.remove('hidden'));
+  }, 150);
+
+
+
+//   const para = document.querySelectorAll('p');
+
+// // Hide all during scroll
+// para.forEach(para => para.classList.add('hidden'));
+
+// // Clear any previous timeout
+// clearTimeout(scrollTimeout_2);
+
+// // Show after scroll stops (150ms delay)
+// scrollTimeout_2 = setTimeout(() => {
+//     para.forEach(para => para.classList.remove('hidden'));
+// }, 150);
+
+
+
+
+// const a = document.querySelectorAll('a');
+
+// // Hide all during scroll
+// a.forEach(a => a.classList.add('hidden'));
+
+// // Clear any previous timeout
+// clearTimeout(scrollTimeout_3);
+
+// // Show after scroll stops (150ms delay)
+// scrollTimeout_3 = setTimeout(() => {
+//     a.forEach(a => a.classList.remove('hidden'));
+// }, 150);
+
+
+
+
+// const span = document.querySelectorAll('span');
+
+// // Hide all during scroll
+// span.forEach(a => a.classList.add('hidden'));
+
+// // Clear any previous timeout
+// clearTimeout(scrollTimeout_4);
+
+// // Show after scroll stops (150ms delay)
+// scrollTimeout_4 = setTimeout(() => {
+//     span.forEach(a => a.classList.remove('hidden'));
+// }, 150);
+
+
+
+// const strong = document.querySelectorAll('strong');
+
+// // Hide all during scroll
+// strong.forEach(a => a.classList.add('hidden'));
+
+// // Clear any previous timeout
+// clearTimeout(scrollTimeout_5);
+
+// // Show after scroll stops (150ms delay)
+// scrollTimeout_5 = setTimeout(() => {
+//     strong.forEach(a => a.classList.remove('hidden'));
+// }, 150);
+
+
+
+// const li = document.querySelectorAll('ul');
+
+// // Hide all during scroll
+// li.forEach(a => a.classList.add('hidden'));
+
+// // Clear any previous timeout
+// clearTimeout(scrollTimeout_6);
+
+// // Show after scroll stops (150ms delay)
+// scrollTimeout_6 = setTimeout(() => {
+//     li.forEach(a => a.classList.remove('hidden'));
+// }, 150);
+
+
+
+
+}
+
+// window.addEventListener('scroll', hideImagesDuringScroll, { passive: true });
+
+
+
+
+ 
       </script>
 
 
