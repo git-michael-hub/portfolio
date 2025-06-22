@@ -37,7 +37,7 @@ strong.hidden
 
 
 body.ready .first-level-section {
-  transition: opacity 0.3s ease-in, transform 0.2s ease-in;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
 
@@ -63,6 +63,18 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+.card {
+    opacity: 0.2;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+
 .first-level-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -73,8 +85,8 @@ html {
 
     /* Hidden by default */
     opacity: 0.2;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease-out, transform 0.2s ease-out;
+    /* transform: scale(0.95); */
+    /* transition: opacity 0.5s ease-out, transform 0.5s ease-out; */
 
     
     will-change: opacity, transform;
@@ -83,7 +95,7 @@ html {
   /* When visible - fade in and scale up */
   .first-level-section.visible {
     opacity: 1;
-    transform: scale(1);
+    /* transform: scale(1); */
   }
 
 
@@ -231,6 +243,9 @@ img.profile-image:hover {
 .skills > .scroll-container {
     width: 100%;
     height: 100vh;
+}
+
+.experience > .scroll-container {
     overflow-y: auto;
 }
 
@@ -421,7 +436,15 @@ img.profile-image:hover {
   .project-list {
     display: flex;
     justify-content: space-evenly;
-    padding: 0px 40px;
+    padding: 0;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: auto;
+    scroll-snap-type: x mandatory;
+    margin: 10px 52px;
   }
 
   .skills-list {
@@ -434,13 +457,27 @@ img.profile-image:hover {
     background: white;
     padding: 0 12px;
     border-radius: 12px;
-    margin: 0 12px;
-    width: 100%;
+    
+    width: 246px;
     text-align: center;
     box-shadow: 0 0px 100px rgb(0 0 0 / 18%);
     cursor: pointer;
     height: 200px;
   }
+
+  .skills-item {
+    margin: 0 12px 10px 12px;
+ }
+ /* .project-item {
+    margin: 0 12px;
+    transform: scale(.9);
+ } */
+
+
+  .project-item {
+    margin: 0 12px 6px 0px;
+  }
+
 
   .outro-item {
     padding: 0 32px;
@@ -515,7 +552,7 @@ img.profile-image:hover {
 
   .skills-item.skills-git {
     height: 160px !important;
-    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .project-item p {
@@ -546,8 +583,8 @@ img.profile-image:hover {
 } */
 
 .project-item.active {
-  border-left: 4px solid #38bdf8;
-  background-color: #f0f9ff;
+    border-left: 14px solid #28e02f;
+    transform: scale(1);
 }
 
 /* .project-image {
@@ -565,13 +602,13 @@ img.profile-image:hover {
 
 .project-content {
     /* display: none !important; */
-    height: 60vh;
+    height: 58vh;
   display: flex; /* Not inline-flex */
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   gap: 1rem; /* spacing between images */
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0;
   scroll-snap-type: x mandatory;
   /* background: red; */
   margin: 10px 52px;
@@ -584,26 +621,30 @@ img.profile-image:hover {
 
 
 /* 👇 For WebKit (Chrome, Safari) */
-.project-content::-webkit-scrollbar {
+.project-content::-webkit-scrollbar,
+.project-list::-webkit-scrollbar {
   height: 12px;
 }
 
-.project-content::-webkit-scrollbar-thumb {
+.project-content::-webkit-scrollbar-thumb,
+.project-list::-webkit-scrollbar-thumb {
   background: #ffffff;
   border-radius: 6px;
 }
 
-.project-content::-webkit-scrollbar-track {
+.project-content::-webkit-scrollbar-track,
+.project-list::-webkit-scrollbar-track {
   background: #7993a9;
 }
 
 
 
 /* Optional: snap each image into view */
-.project-content > div {
+.project-content .project-image-wrap {
   scroll-snap-align: start;
   flex-shrink: 0; /* prevents wrapping */
   /* width: 50vw; */
+  display: contents;
 }
 
 .project-image {
@@ -661,6 +702,12 @@ img.profile-image:hover {
     height: 100%;
     justify-content: space-between;
     /* will-change: transform; */
+
+    text-wrap: auto;
+    width: 224px;
+}
+
+.project-item-content p {
 }
 
 .img-bootstrap {
@@ -745,6 +792,302 @@ img.profile-image:hover {
 
 
 
+.profile .left-box .left-box-details {
+    text-align: center;
+}
+
+/* @media only screen and (min-width: 600px) {
+    .experience .content {
+        width: 72%;
+    }
+} */
+
+.outro-item-content {
+    display: grid;
+    height: 100%;
+}
+
+.skills-item-content {
+    display: flex;
+}
+
+
+@media only screen and (min-width: 1024px) {
+    .experience .content {
+        width: 82%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .profile .container {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    .profile .container {
+        width: 60%;
+    }
+
+    .experience .scroll-container,
+    .project .scroll-container,
+    .skills .scroll-container {
+        width: 80%;
+    }
+
+    .experience .scroll-container {
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .experience .scroll-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+    .profile .container {
+        display: flex;
+        flex-direction: column;
+        /* overflow: hidden; */
+        /* box-sizing: border-box; */
+        /* text-wrap-style: balance; */
+        align-items: center;
+    }
+
+    .profile .left-box {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 16px 16px 0 0;
+        background: linear-gradient(90deg, rgb(245 245 245) 0%, rgb(255 255 255) 50%, rgb(244 244 244) 100%);
+    }
+
+
+    .profile .right-box {
+        border-radius: 0 0 16px 16px;
+    }
+
+    .profile .left-box,
+    .profile .right-box {
+        width: 98%;
+        padding: 10px 24px 0px 24px;
+    }
+
+    .experience h1, 
+    .project h1, 
+    .skills h1,
+    .project-content,
+    .project-list {
+        margin-left: 20px;
+    }
+
+    .experience .timeline {
+        margin: 0;
+    }
+
+    .experience .content {
+        width: 72%;
+    }
+
+    .project-list {
+        width: 96%;
+    }
+
+    .project-content {
+        width: 95%;
+    }
+
+    .outro-item-wrap {
+        width: 80vw !important;
+    }
+
+    .skills-wrap {
+        margin-left: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .profile .container {
+        width: 100vw;
+        align-items: center;
+        padding: 0 60px;
+        text-wrap-style: unset;
+
+        height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0;
+    }
+
+    .profile .left-box,
+    .profile .right-box {
+        width: 90vw;
+        border-radius: 0;
+    }
+
+    .experience .content {
+        padding: 20px 10px 6px 9px;
+        width: 92%;
+        margin-left: 0;
+        border-radius: 0;
+    }
+
+    .skills-wrap {
+        margin: 0 !important;
+        flex-direction: column !important;
+    }
+
+    .skills-left,
+    .skills-right {
+        flex-direction: column !important;
+    }
+
+    .skills-left .skills-item {
+        width: 88% !important;
+        margin-left: 0;
+        border-radius: 0;
+    }
+
+    .skills-right .skills-item {
+        width: 93% !important;
+        margin-top: 12px;
+        margin-left: 0;
+        border-radius: 0;
+    }
+
+    .card {
+        width: 95% !important;
+    }
+
+    .skills-item.skills-summary {
+        height: 670px !important;
+    }
+
+    .outro-item.card {
+        width: 86vw !important;
+        border-radius: 0;
+    
+        display: flex;
+        align-items: center;
+    }
+
+    .outro-end {
+        margin: 40px 0;
+    }
+
+
+.skills > .scroll-container {
+    overflow-y: auto;
+}
+
+
+    /* .profile .right-box p,
+.profile .right-box li,
+.experience .content p,
+.experience .content li {
+    font-size: 16px !important;
+}
+
+.experience .content .header {
+    font-size: 17px;
+  }
+
+  .experience .content strong {
+    font-size: 17px !important;
+  }
+
+
+  .outro-item {
+    font-size: 15px;
+  }
+
+  .outro-item .title {
+    font-size: 17px;
+  }
+
+  .skills-item  ul {
+    font-size: 14px;
+  }
+
+  .skills-summary {
+    font-size: 14px;
+  }
+
+  .project-item .description {
+    font-size: 15px;
+  }
+
+
+  .low-exp {
+    font-size: 12px;
+}
+
+.mid-exp {
+    font-size: 12px;
+}
+
+.high-exp {
+    font-size: 12px;
+}
+
+.need-review {
+    font-size: 12px;
+}
+
+.exp-year {
+    font-size: 12px;
+}
+
+.number-projects {
+    font-size: 12px;
+} */
+
+.experience .timeline::after {
+    background-color: unset;
+}
+
+.experience .left::before {
+        content: unset;
+}
+
+.experience .container::after {
+    content: unset;
+}
+
+.experience .container {
+    padding-left: 0;
+    width: 100%;
+}
+
+.experience .content .header {
+    flex-direction: column;
+}
+
+.experience .content strong {
+    font-weight: 100;
+}
+
+.experience .content strong:first-child {
+    font-weight: bold;
+}
+
+.project-image {
+    max-width: 140%;
+}
+
+.project-list,
+.project-content {
+    margin-left: 6px;
+}
+
+
+}
+
+
+
     </style>
 
 
@@ -757,30 +1100,34 @@ img.profile-image:hover {
 
     <!-- <div class="scroll-container-parent"> -->
         <section class="first-level-section profile">
-            <div class="container">
+            <div class="container card">
               <div class="left-box">
-                  <p>
-                      <img loading="lazy" decoding="async"  src="images/me.png" alt="Profile Picture" class="profile-image" style="width: 160px; height: 120px; vertical-align: middle;">
-                  </p>
-                  <strong>Michael Sy</strong>
-                  <p>Software Developer | Angular Framework</p>
-                  <p>
-                      <span>
-                          <a href="https://mail.google.com/mail/?view=cm&to=dev.michael.ph@gmail.com" target="_blank">
-                              <img loading="lazy" decoding="async" src="images/social_media/gmail.png" alt="Email" style="width: 24px; height: 30px; vertical-align: middle;">
-                          </a>
-                      </span>
-                      <span>
-                          <a href="https://github.com/git-michael-hub" target="_blank">
-                              <img loading="lazy" decoding="async" src="images/social_media/github-sign.png" alt="Github Profile" style="width: 24px; height: 24px; vertical-align: middle;">
-                          </a>
-                      </span>
-                      <span>
-                          <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">
-                              <img loading="lazy" decoding="async" src="images/social_media/linkedin.png" alt="LinkedIn Profile" style="width: 24px; height: 24px; vertical-align: middle;">
-                          </a>
-                      </span>
-                  </p>
+                  <div class="left-box-img">
+                    <p>
+                        <img loading="lazy" decoding="async"  src="images/me.png" alt="Profile Picture" class="profile-image" style="width: 160px; height: 120px; vertical-align: middle;">
+                    </p>
+                  </div>
+                 <div class="left-box-details">
+                    <strong>Michael Sy</strong>
+                    <p>Software Developer | Angular Framework</p>
+                    <p>
+                        <span>
+                            <a href="https://mail.google.com/mail/?view=cm&to=dev.michael.ph@gmail.com" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/social_media/gmail.png" alt="Email" style="width: 24px; height: 30px; vertical-align: middle;">
+                            </a>
+                        </span>
+                        <span>
+                            <a href="https://github.com/git-michael-hub" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/social_media/github-sign.png" alt="Github Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                            </a>
+                        </span>
+                        <span>
+                            <a href="https://linkedin.com/in/michael-s-3974b1154" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/social_media/linkedin.png" alt="LinkedIn Profile" style="width: 24px; height: 24px; vertical-align: middle;">
+                            </a>
+                        </span>
+                    </p>
+                 </div>
               </div>
               <div class="right-box">
                   <h1>Good Day!</h1>
@@ -806,7 +1153,7 @@ img.profile-image:hover {
 
                   <div class="timeline">
                     <div class="container left">
-                      <div class="content">
+                      <div class="content card">
                         <p class="header header-title">
                             <strong>AmWest Entertainment LLC - US</strong>
                             <strong>September 2019 – present</strong>
@@ -849,7 +1196,7 @@ img.profile-image:hover {
                       </div>
                     </div>
                     <div class="container left">
-                        <div class="content">
+                        <div class="content card">
                             <p class="header header-title">
                                 <strong>Limecodes Corp – PH</strong>
                                 <strong>April 2018 – June 2019</strong>
@@ -916,7 +1263,7 @@ img.profile-image:hover {
                         </div>
                     </div>
                     <div class="container left">
-                        <div class="content">
+                        <div class="content card">
                             <p class="header header-title">
                                 <strong>Junior Software Developer</strong>
                             </p>
@@ -952,7 +1299,7 @@ img.profile-image:hover {
 
                     <div class="container left">
 
-                        <div class="content">
+                        <div class="content card">
                             <p class="header header-title">
                                 <strong>Angular Developer</strong>
                                 <strong>Freelance Project Based</strong>
@@ -1006,7 +1353,7 @@ img.profile-image:hover {
             <div class="scroll-container">
                 <h1 class="sticky-heading">Projects</h1>
                 <div class="project-list">
-                    <div class="project-item project-1 active">
+                    <div class="project-item project-1 card active">
                         <div class="project-item-content">
                             <div>
                                 <p class="title"><strong>Workforce Management</strong></p>
@@ -1053,7 +1400,7 @@ img.profile-image:hover {
                         </div>
                         
                     </div>
-                    <div class="project-item project-2">
+                    <div class="project-item project-2 card">
                         <div class="project-item-content">
                             <div>
                                 <p class="title"><strong>Workforce Management</strong></p>
@@ -1101,7 +1448,7 @@ img.profile-image:hover {
                         
                   
                     </div>
-                    <div class="project-item project-3">
+                    <div class="project-item project-3 card">
                        <div class="project-item-content">
                         <div>
                             <p class="title"><strong>Affiliate Management</strong></p>
@@ -1145,7 +1492,7 @@ img.profile-image:hover {
                             </p>
                        </div>
                     </div>
-                    <div class="project-item project-4">
+                    <div class="project-item project-4 card">
                         <div class="project-item-content">
                             <div>
                                 <p class="title"><strong>Complex Horse Betting</strong></p>
@@ -1175,7 +1522,7 @@ img.profile-image:hover {
                         
                       
                     </div>
-                    <div class="project-item project-5">
+                    <div class="project-item project-5 card">
                         <div class="project-item-content">
                             <div>
                                 <p class="title"><strong>Virtual Horse Show</strong></p>
@@ -1208,184 +1555,184 @@ img.profile-image:hover {
                         
                     </div>
                 </div>
-                <div class="project-content project-1-content" >
+                <div class="project-content project-1-content card" >
                   
-                   <div>
+                   <div class="project-image-wrap">
                     <img loading="lazy" decoding="async" src="images/projects/project1/example_em_2.png" class="project-image project-1-image" />
                    </div>
-                   <div>
+                   <div class="project-image-wrap">
                     <img loading="lazy" decoding="async" src="images/projects/project1/example_em_1.png" class="project-image project-1-image"  />
                 </div>
              
-                   <div>
+                   <div class="project-image-wrap">
                     <img loading="lazy" decoding="async" src="images/projects/project1/example_em_3.png" class="project-image project-1-image"  />
                    </div>
-                    <div>
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project1/example_em_4.png" class="project-image project-1-image"  />
                     </div>
                    
-                    <div>
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project1/example_em_5.png" class="project-image project-1-image" />
                     </div>
                    
-                    <div>
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project1/example_em_6.png" class="project-image project-1-image"  />
                     </div>
                   
-                    <div>
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project1/example_em_7.png" class="project-image project-1-image" />
                     </div>
                 </div>
-                <div class="project-content project-2-content" style="display: none;">
-                    <div>
+                <div class="project-content project-2-content card" style="display: none;">
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_1.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_2.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_3.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_4.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_5.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_6.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_7.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_8.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_9.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_10.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_11.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_12.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_13.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_14.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_15.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_16.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project2/example_em_m_17.png" class="project-image project-1-image" />
                        </div>
                 </div>
-                <div class="project-content project-3-content" style="display: none;">
-                    <div>
+                <div class="project-content project-3-content card" style="display: none;">
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_1.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_2.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_3.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_4.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_5.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_6.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_7.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project3/example_aff_8.png" class="project-image project-1-image" />
                        </div>
 
                 </div>
-                <div class="project-content project-4-content" style="display: none;">
-                    <div>
+                <div class="project-content project-4-content card" style="display: none;">
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_1.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_2.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_3.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_4.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_5.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_6.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_7.png" class="project-image project-1-image" />
                        </div>
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project4/example_plus_8.png" class="project-image project-1-image" />
                        </div>
                 </div>
-                <div class="project-content project-5-content" style="display: none;">
-                    <div>
+                <div class="project-content project-5-content card" style="display: none;">
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_2.png" class="project-image project-1-image" />
                        </div>
                        
-                    <div>
+                    <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_1.png" class="project-image project-1-image" />
                        </div>
 
               
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_3.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_4.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_1.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_2.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_3.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_4.png" class="project-image project-1-image" />
                        </div>
 
-                       <div>
+                       <div class="project-image-wrap">
                         <img loading="lazy" decoding="async" src="images/projects/project5/example_vhs_h_5.png" class="project-image project-1-image" />
                        </div>
                 </div>
@@ -1396,9 +1743,9 @@ img.profile-image:hover {
             <div class="scroll-container">
                 <h1 class="sticky-heading">Skills</h1>
 
-                <div style="display: flex; flex-direction: row; height: 90vh; margin: 0 40px;">
-                    <div class="" style="display: flex; flex-direction: column;">
-                        <div class="skills-item skills-summary skill-1 active" style="height: 100%;">
+                <div class="skills-wrap" style="display: flex; flex-direction: row; height: 90vh; margin: 0 40px;">
+                    <div class="skills-left" style="display: flex; flex-direction: column;">
+                        <div class="skills-item skills-summary skill-1 active card" style="height: 100%;">
                             <div class="skills-item-content">
                                 <div>
                                     <div class="description">
@@ -1436,7 +1783,7 @@ img.profile-image:hover {
                             </div>
                         </div>
 
-                        <div class="skills-item skill-1 skills-git active">
+                        <div class="skills-item skill-1 skills-git active card">
                             <div class="skills-item-content">
                                 <div>
                                     <p class="title"><strong>Version Control & Agile</strong></p>
@@ -1485,9 +1832,9 @@ img.profile-image:hover {
                     </div>
 
 
-                    <div class="skills-list" style="display: flex; flex-direction: row;">
-                        <div style="display: grid;">
-                            <div class="skills-item skill-1 active">
+                    <div class="skills-list skills-right" style="display: flex; flex-direction: row;">
+                        <div style="display: flow;">
+                            <div class="skills-item skill-1 active card">
                                 <div class="skills-item-content">
                                     <div>
                                         <p class="title"><strong>Languages</strong></p>
@@ -1557,7 +1904,7 @@ img.profile-image:hover {
                             </div>
         
                            
-                            <div class="skills-item skill-1 active">
+                            <div class="skills-item skill-1 active card">
                                 <div class="skills-item-content">
                                     <div>
                                         <p class="title"><strong>Data and UI Libraries</strong></p>
@@ -1634,7 +1981,7 @@ img.profile-image:hover {
                             </div>
 
 
-                            <div class="skills-item skill-1 active">
+                            <div class="skills-item skill-1 active card">
                                 <div class="skills-item-content">
                                     <div>
                                         <p class="title"><strong>Database</strong></p>
@@ -1684,8 +2031,8 @@ img.profile-image:hover {
 
 
     
-                       <div style="display: grid;">
-                        <div class="skills-item skill-1 active">
+                       <div style="display: flow;">
+                        <div class="skills-item skill-1 active card">
                             <div class="skills-item-content">
                                 <div>
                                     <p class="title"><strong>Framework & Build Libraries</strong></p>
@@ -1770,7 +2117,7 @@ img.profile-image:hover {
                             </div>
                         </div>
     
-                        <div class="skills-item skill-1 active">
+                        <div class="skills-item skill-1 active card">
                             <div class="skills-item-content">
                                 <div>
                                     <p class="title"><strong>Cloud & Infrastructure</strong></p>
@@ -1845,7 +2192,7 @@ img.profile-image:hover {
                             </div>
                         </div>
     
-                        <div class="skills-item skill-1 active">
+                        <div class="skills-item skill-1 active card">
                             <div class="skills-item-content">
                                 <div>
                                     <p class="title"><strong>Tools and AI</strong></p>
@@ -1898,8 +2245,8 @@ img.profile-image:hover {
                 <!-- <h1 class="sticky-heading">Skills</h1> -->
 
                 <div style="display: flex; flex-direction: row; height: 90vh; margin: 0 40px;">
-                    <div class="" style="display: flex; flex-direction: column; align-items: center; width: 60vw;">
-                        <div class="outro-item  outro-1 active" style="height: 100%;">
+                    <div class="outro-item-wrap" style="display: flex; flex-direction: column; align-items: center; width: 60vw;">
+                        <div class="outro-item  outro-1 active card" style="height: 100%;">
                             <div class="outro-item-content">
                                 <div>
                                     <p class="title"><strong>Links</strong></p>
@@ -1955,7 +2302,7 @@ img.profile-image:hover {
                             </div>
                         </div>
 
-                        <div class="outro-item outro-1 active">
+                        <div class="outro-item outro-1 active card">
                             <div class="outro-item-content">
                                 <div class="outro-end">
                                     <h1>Thank you for checking out my portfolio.</h1>
@@ -2039,6 +2386,29 @@ img.profile-image:hover {
                     document.body.classList.add('ready');
 
                     const sections = document.querySelectorAll('.first-level-section');
+                    const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        } else {
+                            entry.target.classList.remove('visible');
+                        }
+                        });
+                    },
+                    {
+                        threshold: 0.1
+                    }
+                    );
+
+                    sections.forEach(section => observer.observe(section));
+                }, 50); // or requestAnimationFrame(() => ...)
+
+
+                setTimeout(() => {
+                    document.body.classList.add('ready');
+
+                    const sections = document.querySelectorAll('.card');
                     const observer = new IntersectionObserver(
                     (entries) => {
                         entries.forEach(entry => {
