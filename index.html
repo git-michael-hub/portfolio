@@ -908,9 +908,32 @@ img.profile-image:hover {
 
 @media only screen and (max-width: 600px) {
 
+    html, body, .first-level-section {
+        background: white;
+        }
+
     .first-level-section {
         padding: 20px 0;
     }
+
+    .first-level-section h1 {
+        color: rgb(54, 62, 73)
+    }
+
+    .first-level-section.project {
+        background: linear-gradient(
+            90deg, 
+            rgb(85, 117, 155) 0%, 
+            rgb(125, 152, 175) 50%, 
+            rgb(85, 117, 155) 100%
+        );
+    }
+
+    .first-level-section.project h1 {
+        color: white;
+    }
+
+   
 
     .profile-image {
         margin-right: 8px;
@@ -943,6 +966,10 @@ img.profile-image:hover {
         width: 92%;
         margin-left: 0;
         border-radius: 0;
+    }
+
+    .experience .content:first-child {
+        margin-top: 1px;
     }
 
     .skills-wrap {
@@ -982,6 +1009,10 @@ img.profile-image:hover {
     
         display: flex;
         align-items: center;
+    }
+
+    .outro-item.card:first-child {
+        box-shadow: unset;
     }
 
     .outro-end {
