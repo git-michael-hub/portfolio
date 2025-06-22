@@ -95,7 +95,7 @@ html {
   /* When visible - fade in and scale up */
   .first-level-section.visible {
     opacity: 1;
-    transform: scale(1);
+    /* transform: scale(1); */
   }
 
 
@@ -907,6 +907,11 @@ img.profile-image:hover {
 }
 
 @media only screen and (max-width: 600px) {
+
+    .first-level-section {
+        padding: 20px 0;
+    }
+
     .profile .container {
         width: 100vw;
         align-items: center;
