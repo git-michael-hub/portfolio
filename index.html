@@ -243,6 +243,9 @@ img.profile-image:hover {
 .skills > .scroll-container {
     width: 100%;
     height: 100vh;
+}
+
+.experience > .scroll-container {
     overflow-y: auto;
 }
 
@@ -454,13 +457,21 @@ img.profile-image:hover {
     background: white;
     padding: 0 12px;
     border-radius: 12px;
-    margin: 0 12px;
+    
     width: 246px;
     text-align: center;
     box-shadow: 0 0px 100px rgb(0 0 0 / 18%);
     cursor: pointer;
     height: 200px;
   }
+
+  .skills-item {
+    margin: 0 12px 10px 12px;
+ }
+ /* .project-item {
+    margin: 0 12px;
+    transform: scale(.9);
+ } */
 
 
   .project-item {
@@ -541,7 +552,7 @@ img.profile-image:hover {
 
   .skills-item.skills-git {
     height: 160px !important;
-    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .project-item p {
@@ -572,8 +583,8 @@ img.profile-image:hover {
 } */
 
 .project-item.active {
-  border-left: 4px solid #38bdf8;
-  background-color: #f0f9ff;
+    border-left: 14px solid #28e02f;
+    transform: scale(1);
 }
 
 /* .project-image {
@@ -788,10 +799,45 @@ img.profile-image:hover {
     }
 } */
 
+.outro-item-content {
+    display: grid;
+    height: 100%;
+}
+
+.skills-item-content {
+    display: flex;
+}
+
 
 @media only screen and (min-width: 1024px) {
     .experience .content {
         width: 82%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .profile .container {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1800px) {
+    .profile .container {
+        width: 60%;
+    }
+
+    .experience .scroll-container,
+    .project .scroll-container,
+    .skills .scroll-container {
+        width: 80%;
+    }
+
+    .experience .scroll-container {
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .experience .scroll-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
     }
 }
 
@@ -866,20 +912,28 @@ img.profile-image:hover {
         align-items: center;
         padding: 0 60px;
         text-wrap-style: unset;
+
+        height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0;
     }
 
     .profile .left-box,
     .profile .right-box {
         width: 90vw;
+        border-radius: 0;
     }
 
     .experience .content {
         padding: 20px 10px 6px 9px;
-        width: 76%;
+        width: 92%;
+        margin-left: 0;
+        border-radius: 0;
     }
 
     .skills-wrap {
-        margin-left: 12px !important;
+        margin: 0 !important;
         flex-direction: column !important;
     }
 
@@ -889,17 +943,45 @@ img.profile-image:hover {
     }
 
     .skills-left .skills-item {
-        width: 94% !important;
+        width: 88% !important;
+        margin-left: 0;
+        border-radius: 0;
     }
 
     .skills-right .skills-item {
-        width: 100% !important;
+        width: 93% !important;
         margin-top: 12px;
+        margin-left: 0;
+        border-radius: 0;
+    }
+
+    .card {
+        width: 95% !important;
+    }
+
+    .skills-item.skills-summary {
+        height: 670px !important;
+    }
+
+    .outro-item.card {
+        width: 86vw !important;
+        border-radius: 0;
+    
+        display: flex;
+        align-items: center;
+    }
+
+    .outro-end {
+        margin: 40px 0;
     }
 
 
+.skills > .scroll-container {
+    overflow-y: auto;
+}
 
-    .profile .right-box p,
+
+    /* .profile .right-box p,
 .profile .right-box li,
 .experience .content p,
 .experience .content li {
@@ -958,8 +1040,45 @@ img.profile-image:hover {
 
 .number-projects {
     font-size: 12px;
+} */
+
+.experience .timeline::after {
+    background-color: unset;
 }
 
+.experience .left::before {
+        content: unset;
+}
+
+.experience .container::after {
+    content: unset;
+}
+
+.experience .container {
+    padding-left: 0;
+    width: 100%;
+}
+
+.experience .content .header {
+    flex-direction: column;
+}
+
+.experience .content strong {
+    font-weight: 100;
+}
+
+.experience .content strong:first-child {
+    font-weight: bold;
+}
+
+.project-image {
+    max-width: 140%;
+}
+
+.project-list,
+.project-content {
+    margin-left: 6px;
+}
 
 
 }
@@ -1711,7 +1830,7 @@ img.profile-image:hover {
 
 
                     <div class="skills-list skills-right" style="display: flex; flex-direction: row;">
-                        <div style="display: grid;">
+                        <div style="display: flow;">
                             <div class="skills-item skill-1 active card">
                                 <div class="skills-item-content">
                                     <div>
@@ -1909,7 +2028,7 @@ img.profile-image:hover {
 
 
     
-                       <div style="display: grid;">
+                       <div style="display: flow;">
                         <div class="skills-item skill-1 active card">
                             <div class="skills-item-content">
                                 <div>
